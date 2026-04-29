@@ -1,11 +1,30 @@
 <main class="users-page">
-  <header>
-    <p class="eyebrow">User Management</p>
-    <div>
-      <h3>Bem-vindo, {{ userName || 'usuario' }}!</h3>
-      <a href="" (click)="logout(); $event.preventDefault()">Sair</a>
+<header>
+  <p class="eyebrow">User Management</p>
+
+  <div class="header">
+    <div class="user-info">
+      <span class="user-icon" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M20 21a8 8 0 0 0-16 0" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      </span>
+
+      <h4>{{ loggedUser()?.name }}</h4>
     </div>
-  </header>
+
+    <button (click)="logout()">Sair</button>
+  </div>
+</header>
+
 
   @if (errorMessage()) {
     <p class="error-message">{{ errorMessage() }}</p>

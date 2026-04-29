@@ -16,7 +16,7 @@ export class Users {
 
   protected readonly users = signal<User[]>([]);
   protected readonly errorMessage = signal('');
-  protected readonly userName = this.authService.getUserName();
+  protected readonly loggedUser = signal<User | null>(null);
 
   protected logout() {
     this.authService.logout();
@@ -24,6 +24,11 @@ export class Users {
   }
 
   constructor() {
+    this.authService.getAuthMe().subscribe({
+      next: (user) => this.loggedUser.set(user),
+      error: () => this.errorMessage.set('Nao foi possivel carregar usuario logado.'),
+    });
+
     this.usersService.getAll().subscribe({
       next: (users) => this.users.set(users),
       error: () => this.errorMessage.set('Nao foi possivel carregar usuarios.'),

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { tap, map } from 'rxjs';
+import { User } from '../../models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -21,15 +22,12 @@ export class AuthService {
       );
   }
 
-  getToken() {
-    return localStorage.getItem('token');
+  getAuthMe() {
+    return this.http.get<User>(`${this.API}/auth/me`);
   }
 
-  getUserName() {
-    const token = this.getToken();
-    if (!token) return null;
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload.name;
+  getToken() {
+    return localStorage.getItem('token');
   }
 
   logout() {

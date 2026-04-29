@@ -15,7 +15,78 @@
 header {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   gap: 6px;
+  height: 40px;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  
+
+  h4 {
+    color: #24384a;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  button {
+    align-items: center;
+    background-color: #1b6a58;
+    border: 1px solid #155546;
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 0.82rem;
+    font-weight: 700;
+    justify-content: center;
+    letter-spacing: 0;
+    min-height: 36px;
+    min-width: 72px;
+    padding: 0 14px;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      transform 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  button:hover {
+    background-color: #155546;
+    border-color: #12483c;
+  }
+
+  button:active {
+    transform: translateY(1px);
+  }
+
+  button:focus-visible {
+    box-shadow: 0 0 0 3px rgba(27, 106, 88, 0.22);
+    outline: none;
+  }
+}
+
+.user-info {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.user-icon {
+  align-items: center;
+  background: #e5f3ef;
+  border-radius: 999px;
+  color: #1b6a58;
+  display: inline-flex;
+  height: 28px;
+  justify-content: center;
+  width: 28px;
 }
 
 .eyebrow {
