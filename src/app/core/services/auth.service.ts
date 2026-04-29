@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { email } from '@angular/forms/signals';
 import { tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })

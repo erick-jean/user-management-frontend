@@ -1,0 +1,24 @@
+<main class="users-page">
+  <header>
+    <p class="eyebrow">User Management</p>
+    <h1>Usuarios</h1>
+  </header>
+
+  @if (errorMessage()) {
+    <p class="error-message">{{ errorMessage() }}</p>
+  }
+
+  <section class="users-list" aria-label="Lista de usuarios">
+    @for (user of users(); track user.id) {
+      <article class="user-card">
+        <div>
+          <h2>{{ user.name }}</h2>
+          <p>{{ user.email }}</p>
+        </div>
+        <span>{{ user.role }}</span>
+      </article>
+    } @empty {
+      <p>Nenhum usuario encontrado.</p>
+    }
+  </section>
+</main>
