@@ -1,4 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
@@ -31,8 +32,13 @@ export class Login {
       next: () => {
         this.router.navigateByUrl('/users');
       },
-      error: () => {
-        this.errorMessage.set('Email ou senha invalidos.');
+      error: (error: HttpErrorResponse) => {
+        const message =
+          error.status === 0
+            ? 'Nao foi possivel conectar com a API.'
+            : 'Email ou senha invalidos.';
+
+        this.errorMessage.set(message);
         this.isLoading.set(false);
       },
     });
