@@ -3,4 +3,8 @@ export interface User {
   name: string;
   email: string;
   role: 'ADMIN' | 'USER';
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+  lastLogin: string | null;
 }

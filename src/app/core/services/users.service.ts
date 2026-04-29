@@ -9,8 +9,12 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
   getAll() {
+    return this.http.get<{ data: User[] }>(this.API).pipe(map((response) => response.data));
+  }
+
+  getById(id: String) {
     return this.http
-      .get<{ data: User[] }>(this.API)
+      .get<{ data: User }>(`${this.API}/${id}`)
       .pipe(map((response) => response.data));
   }
 

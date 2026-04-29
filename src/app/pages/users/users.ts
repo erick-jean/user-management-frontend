@@ -1,4 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsersService } from '../../core/services/users.service';
 import { User } from '../../models/user.model';
 import { AuthService } from '../../core/services/auth.service';
@@ -11,12 +12,15 @@ import { AuthService } from '../../core/services/auth.service';
 export class Users {
   private readonly usersService = inject(UsersService);
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
   protected readonly users = signal<User[]>([]);
   protected readonly errorMessage = signal('');
+  protected readonly userName = this.authService.getUserName();
 
-  logout() {
+  protected logout() {
     this.authService.logout();
+    this.router.navigateByUrl('/login');
   }
 
   constructor() {

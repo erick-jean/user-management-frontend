@@ -2,7 +2,8 @@
   <header>
     <p class="eyebrow">User Management</p>
     <div>
-      <a href="" (click)="logout()">Sair</a>
+      <h3>Bem-vindo, {{ userName || 'usuario' }}!</h3>
+      <a href="" (click)="logout(); $event.preventDefault()">Sair</a>
     </div>
   </header>
 
