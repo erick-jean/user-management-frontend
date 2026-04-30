@@ -31,13 +31,13 @@ export class Users {
   protected readonly errorMessage = signal('');
   protected readonly loggedUser = signal<User | null>(null);
 
-  columns: { key: string; name: string }[] = [
-    { key: 'createdAt', name: 'Data de Criação' } ,
-    { key: 'name', name: 'Nome' },
-    { key: 'email', name: 'Email' },
-    { key: 'isActive', name: 'Ativo' },
-    { key: 'role', name: 'Função' },
-    { key: 'actions', name: 'Ações' },
+  columns: { key: string; name: string, sortable?: boolean }[] = [
+    { key: 'createdAt', name: 'Data de Criação', sortable: true },
+    { key: 'name', name: 'Nome', sortable: true },
+    { key: 'email', name: 'Email', sortable: true },
+    { key: 'isActive', name: 'Ativo', sortable: true },
+    { key: 'role', name: 'Função', sortable: true },
+    { key: 'actions', name: 'Ações', sortable: false },
   ];
 
   protected logout() {

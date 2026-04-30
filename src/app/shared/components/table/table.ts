@@ -34,12 +34,13 @@ export interface TableColumn<T> {
   templateUrl: './table.html',
   styleUrl: './table.scss',
 })
-export class Table implements AfterViewInit {
+export class Table<T> implements AfterViewInit {
   private _liveAnnouncer = inject(LiveAnnouncer);
 
-  @Input() columns: { key: string; name: string, sortable?: boolean; }[] = [];
+  @Input() columns: { key: string; name: string; sortable?: boolean }[] = [];
 
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  @Input() data: T[] = [];
+  dataSource = new MatTableDataSource<T>();
 
   @ViewChild(MatSort) sort!: MatSort;
 

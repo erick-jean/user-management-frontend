@@ -10,7 +10,8 @@ table {
 .users-page {
   background: #f5f7f9;
   color: #102334;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 24px;
   min-height: 100vh;
   padding: 32px;
@@ -23,7 +24,9 @@ header {
   align-items: center;
   gap: 6px;
   height: 40px;
-  background-color: #b42318;
+  background-color: #ffffff;
+  padding: 36px;
+  border-radius: 20px;
 }
 
 .header {

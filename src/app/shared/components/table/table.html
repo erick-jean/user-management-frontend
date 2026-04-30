@@ -10,8 +10,9 @@
       <th
         mat-header-cell
         *matHeaderCellDef
-        mat-sort-header
-        sortActionDescription="Sort by {{ column.name }}"
+        [mat-sort-header]="column.key"
+        [disabled]="column.sortable === false"
+        [sortActionDescription]="'Sort by ' + column.name"
       >
         {{ column.name }}
       </th>
