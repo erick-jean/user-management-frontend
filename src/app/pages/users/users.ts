@@ -8,15 +8,6 @@ import { CommonModule } from '@angular/common';
 import { Table } from '../../shared/components/table/table';
 import { TableColumn } from '../../shared/components/table/table';
 
-export interface UserTable {
-  createdAt: string;
-  name: string;
-  email: string;
-  isActive: boolean;
-  role?: string;
-  actions?: string;
-}
-
 @Component({
   selector: 'app-users',
   templateUrl: './users.html',
@@ -36,7 +27,7 @@ export class Users {
     { key: 'createdAt', label: 'Data de Criação', sortable: true },
     { key: 'name', label: 'Nome', sortable: true },
     { key: 'email', label: 'Email', sortable: true },
-    { key: 'isActive', label: 'Ativo', sortable: true },
+    { key: 'isActive', label: 'Ativo', sortable: true, format: (value) => (value ? 'Sim' : 'Não'), },
     { key: 'role', label: 'Função', sortable: true },
   ];
 

@@ -1,25 +1,20 @@
-import {
-  AfterViewInit,
-  Component,
-  ViewChild,
-  inject,
-  Input,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { AfterViewInit, Component, ViewChild, inject, Input, SimpleChanges } from '@angular/core';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
 
 export interface TableColumn<T> {
   key: keyof T;
   label: string;
   sortable?: boolean;
+  format?: (value: any, row: T) => string; // Função para formatar o valor da célula
+  cellClass?: string | ((value: any, row: T) => string); // Permite definir uma classe CSS para a célula, seja como string ou função
 }
 
 @Component({
   selector: 'app-table',
-  imports: [MatTableModule, MatSortModule],
+  imports: [MatTableModule, MatSortModule, CommonModule],
   templateUrl: './table.html',
   styleUrl: './table.scss',
 })
