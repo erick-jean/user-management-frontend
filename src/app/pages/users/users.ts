@@ -5,7 +5,7 @@ import { User } from '../../models/user.model';
 import { AuthService } from '../../core/services/auth.service';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { Table } from '../../shared/components/table/table';
 
 export interface UserTable {
   createdAt: string;
@@ -20,7 +20,7 @@ export interface UserTable {
   selector: 'app-users',
   templateUrl: './users.html',
   styleUrl: './users.scss',
-  imports: [MatTableModule, CommonModule],
+  imports: [MatTableModule, CommonModule, Table],
 })
 export class Users {
   private readonly usersService = inject(UsersService);
