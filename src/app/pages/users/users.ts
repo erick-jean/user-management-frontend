@@ -4,6 +4,7 @@ import { UsersService } from '../../core/services/users.service';
 import { User } from '../../models/user.model';
 import { AuthService } from '../../core/services/auth.service';
 import { MatTableModule } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
 
 export interface UserTable {
   createdAt: string;
@@ -18,7 +19,7 @@ export interface UserTable {
   selector: 'app-users',
   templateUrl: './users.html',
   styleUrl: './users.scss',
-  imports: [MatTableModule],
+  imports: [MatTableModule, CommonModule],
 })
 export class Users {
   private readonly usersService = inject(UsersService);
