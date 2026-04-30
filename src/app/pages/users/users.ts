@@ -5,8 +5,7 @@ import { User } from '../../models/user.model';
 import { AuthService } from '../../core/services/auth.service';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
-import { LiveAnnouncer } from  '@angular/cdk/a11y' ;
- import { AfterViewInit , Component , ViewChild , inject} from  '@angular/core' ;
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 export interface UserTable {
   createdAt: string;
@@ -23,7 +22,7 @@ export interface UserTable {
   styleUrl: './users.scss',
   imports: [MatTableModule, CommonModule],
 })
-export class Users implements  AfterViewInit{
+export class Users {
   private readonly usersService = inject(UsersService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
