@@ -3,6 +3,10 @@
   min-height: 100vh;
 }
 
+table {
+  width: 100%;
+}
+
 .users-page {
   background: #f5f7f9;
   color: #102334;
@@ -19,14 +23,14 @@ header {
   align-items: center;
   gap: 6px;
   height: 40px;
+  background-color: #b42318;
 }
 
 .header {
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: 16px;
-  
+  gap: 60px;
 
   h4 {
     color: #24384a;
@@ -108,10 +112,7 @@ h1 {
   line-height: 1.1;
 }
 
-.users-list {
-  display: grid;
-  gap: 12px;
-}
+
 
 .user-card {
   align-items: center;
