@@ -28,4 +28,6 @@
   @if (errorMessage()) {
     <p class="error-message">{{ errorMessage() }}</p>
   }
+
+  <app-table [columns]="columns" [data]="dataSource"></app-table>
 </main>

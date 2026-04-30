@@ -6,6 +6,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 export interface TableColumn<T> {
   key: keyof T;
   label: string;
+  sortable?: boolean;
 }
 
 @Component({
@@ -17,12 +18,19 @@ export interface TableColumn<T> {
 export class Table<T> implements AfterViewInit {
   private _liveAnnouncer = inject(LiveAnnouncer);
 
-  @Input() displayedColumns: TableColumn<T>[] = [];
-  @Input() data: T[] = [];
+  @Input() columns: TableColumn<T>[] = [];
 
-  dataSource = new MatTableDataSource<T>();
+  @Input() set data(value: T[]) {
+    this.dataSource.data = value ?? [];
+  }
+
+  dataSource = new MatTableDataSource<T>([]);
 
   @ViewChild(MatSort) sort!: MatSort;
+
+  get columnKeys(): string[] {
+    return this.columns.map((column) => String(column.key));
+  }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;

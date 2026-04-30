@@ -5,7 +5,7 @@ import { User } from '../../models/user.model';
 import { AuthService } from '../../core/services/auth.service';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
-import { Table } from '../../shared/components/table/table';
+import { Table, TableColumn } from '../../shared/components/table/table';
 
 export interface UserTable {
   createdAt: string;
@@ -27,12 +27,19 @@ export class Users {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
 
-  displayedColumns: string[] = ['createdAt', 'name', 'email', 'isActive', 'role', 'actions'];
-  dataSource: UserTable[] = [];
-
   protected readonly users = signal<User[]>([]);
   protected readonly errorMessage = signal('');
   protected readonly loggedUser = signal<User | null>(null);
+
+  columns: TableColumn<User>[] = [
+    { key: 'createdAt', label: 'Criado em', sortable: true },
+    { key: 'name', label: 'Nome', sortable: true },
+    { key: 'email', label: 'E-mail', sortable: true },
+    { key: 'isActive', label: 'Status' },
+    { key: 'role', label: 'Perfil' },
+  ];
+
+  dataSource: User[] = [];
 
   protected logout() {
     this.authService.logout();
@@ -57,15 +64,7 @@ export class Users {
 
     this.usersService.getAll().subscribe({
       next: (users) => {
-        this.users.set(users);
-
-        this.dataSource = users.map((user) => ({
-          createdAt: user.createdAt,
-          name: user.name,
-          email: user.email,
-          isActive: user.isActive,
-          role: user.role,
-        }));
+        this.dataSource = users;
       },
       error: () => this.errorMessage.set('Nao foi possivel carregar usuarios.'),
     });

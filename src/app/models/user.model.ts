@@ -7,4 +7,5 @@ export interface User {
   createdAt: string;
   updatedAt: string;
   lastLogin: string | null;
+  actions?: string;
 }
