@@ -6,6 +6,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { Table } from '../../shared/components/table/table';
+import { TableColumn } from '../../shared/components/table/table';
 
 export interface UserTable {
   createdAt: string;
@@ -31,13 +32,12 @@ export class Users {
   protected readonly errorMessage = signal('');
   protected readonly loggedUser = signal<User | null>(null);
 
-  columns: { key: string; name: string, sortable?: boolean }[] = [
-    { key: 'createdAt', name: 'Data de Criação', sortable: true },
-    { key: 'name', name: 'Nome', sortable: true },
-    { key: 'email', name: 'Email', sortable: true },
-    { key: 'isActive', name: 'Ativo', sortable: true },
-    { key: 'role', name: 'Função', sortable: true },
-    { key: 'actions', name: 'Ações', sortable: false },
+  columns: TableColumn<User>[] = [
+    { key: 'createdAt', label: 'Data de Criação', sortable: true },
+    { key: 'name', label: 'Nome', sortable: true },
+    { key: 'email', label: 'Email', sortable: true },
+    { key: 'isActive', label: 'Ativo', sortable: true },
+    { key: 'role', label: 'Função', sortable: true },
   ];
 
   protected logout() {
