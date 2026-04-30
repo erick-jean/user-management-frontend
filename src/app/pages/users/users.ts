@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { UsersService } from '../../core/services/users.service';
 import { User } from '../../models/user.model';
 import { AuthService } from '../../core/services/auth.service';
-import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+
 import { CommonModule } from '@angular/common';
 import { Table } from '../../shared/components/table/table';
 import { TableColumn } from '../../shared/components/table/table';
@@ -12,7 +12,7 @@ import { TableColumn } from '../../shared/components/table/table';
   selector: 'app-users',
   templateUrl: './users.html',
   styleUrl: './users.scss',
-  imports: [MatTableModule, CommonModule, Table],
+  imports: [CommonModule, Table],
 })
 export class Users {
   private readonly usersService = inject(UsersService);
@@ -24,10 +24,15 @@ export class Users {
   protected readonly loggedUser = signal<User | null>(null);
 
   columns: TableColumn<User>[] = [
-    { key: 'createdAt', label: 'Data de Criação', sortable: true },
+    {
+      key: 'createdAt',
+      label: 'Data de Criação',
+      sortable: true,
+      format: (value) => new Date(value).toLocaleDateString('pt-BR'),
+    },
     { key: 'name', label: 'Nome', sortable: true },
     { key: 'email', label: 'Email', sortable: true },
-    { key: 'isActive', label: 'Ativo', sortable: true, format: (value) => (value ? 'Sim' : 'Não'), },
+    { key: 'isActive', label: 'Ativo', sortable: true, format: (value) => (value ? 'Sim' : 'Não') },
     { key: 'role', label: 'Função', sortable: true },
   ];
 

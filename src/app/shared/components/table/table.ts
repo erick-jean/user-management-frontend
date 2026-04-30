@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ViewChild, inject, Input, SimpleChanges } fro
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 
 export interface TableColumn<T> {
@@ -14,7 +15,7 @@ export interface TableColumn<T> {
 
 @Component({
   selector: 'app-table',
-  imports: [MatTableModule, MatSortModule, CommonModule],
+  imports: [MatTableModule, MatSortModule, CommonModule, MatPaginatorModule],
   templateUrl: './table.html',
   styleUrl: './table.scss',
 })
@@ -28,6 +29,8 @@ export class Table<T> implements AfterViewInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   get displayedColumns(): string[] {
     return this.columns.map((column) => String(column.key));
   }
@@ -40,6 +43,7 @@ export class Table<T> implements AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   announceSortChange(sortState: Sort) {
